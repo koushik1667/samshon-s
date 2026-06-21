@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Gallery | SAMJOHN'S Pizza &amp; Buffet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Masonry layout */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(28, 27, 27, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 0.75rem;
+            transition: opacity 0.3s ease;
+        }
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 45px;
+            color: #f3f0ef;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ffdad6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface/60 dark:bg-surface-container-lowest/60 backdrop-blur-xl shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border-b border-white/60 dark:border-inverse-surface/60">
+    <div class="flex justify-between items-center px-container-mobile md:px-container-desktop py-4 max-w-[1280px] mx-auto">
+        <a class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight hover:scale-105 transition-transform duration-300" href="index.html">
+            <img alt="SAMJOHN'S Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrRGxd4LNBAlduoCVCQXE2MV0VlxppHPPysRew1P1kWGGG8qeTg9F3qX8AZ4j0tBGZGAQefTYoE-pgWpBc6khvckdOGF7Zg8-kN5wODV_4UaahgoXAtauaUB5S8Z_LApKz_KDPX_m0YzCP6at2nTq9wIZPSIbhSgVgcGWPm1BJ0AFM-k8Il5BzfxjE7RYBMFOqwFzCn_-l4qepjYQlxOJ4ialTlzPonvwjzvs4ClPPiUmJFSBTf3X-S9hQ9Vl_DgC0Ez4YRfxt47MS">
+        </a>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="about.html">About</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="menu.html">Menu</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="buffet.html">Buffet Plans</a>
+            <a class="text-primary dark:text-primary-fixed font-label-bold border-b-2 border-primary pb-1" href="gallery.html">Gallery</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="reviews.html">Reviews</a>
+        </div>
+        <button class="hidden md:block bg-primary-container text-on-primary rounded-full px-6 py-3 font-label-bold hover:scale-105 active:scale-95 transition-all shadow-md btn-reserve">
+            Reserve a Table
+        </button>
+        <!-- Mobile Menu Toggle -->
+        <button aria-label="Menu" class="md:hidden text-on-surface-variant hover:text-primary">
+            <span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-section-gap-lg">
+    <!-- Hero Section -->
+    <section class="pt-16 pb-12 px-container-mobile md:px-container-desktop max-w-[1280px] mx-auto text-center">
+        <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">Our Visual Story</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Experience the vibrant atmosphere, delectable spread, and joyful moments at SAMJOHN'S Pizza &amp; Buffet.</p>
+    </section>
+    
+    <!-- Category Filter Chips -->
+    <section class="px-container-mobile md:px-container-desktop max-w-[1280px] mx-auto mb-12">
+        <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar hide-scroll-bar justify-start md:justify-center">
+            <button class="chip-btn px-6 py-2 rounded-full border-2 border-primary bg-primary/10 text-primary font-label-bold text-label-bold whitespace-nowrap transition-colors">All Photos</button>
+            <button class="chip-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-primary hover:text-primary transition-colors">Food Spread</button>
+            <button class="chip-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-primary hover:text-primary transition-colors">Restaurant Interior</button>
+            <button class="chip-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-primary hover:text-primary transition-colors">Live Counters</button>
+            <button class="chip-btn px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-primary hover:text-primary transition-colors">Happy Families</button>
+        </div>
+    </section>
+
+    <!-- Masonry Grid Gallery -->
+    <section class="px-container-mobile md:px-container-desktop max-w-[1280px] mx-auto">
+        <div class="masonry-grid">
+            <!-- Gallery Item 1 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sprawling, high-resolution top-down shot of a massive buffet food spread. The spread includes various gourmet pizzas, fresh salads, and decadent desserts. The lighting is bright and inviting, highlighting the vibrant colors of the fresh ingredients. The setting implies a luxurious yet approachable dining experience in a modern restaurant environment. Warm tones dominate, accentuating the deliciousness of the food." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTyNia3SJWEGHfhvVE_no33DP_q5SUl-AMNRG3T-pS2puYVomCv63eG01xR2COWQxQLuvgGbZAPHUGJjiGaFDA04YXTIJcp5sn8noHcRjK0EJ-dYpx-utDc7g3rlDGyLXzqOrFwnzjq5CyqQQ4XOW3NhzMXg-7_siHACkFya85MFYmmZ4-n4-d32am-vG3A0biew2BJvu9QIcghfQFLjXF5Am-Q0GWqWWplBgmy6AQjSDp54SIRmWrwoSvB9a_Xh1kSUIFcCLkTxip">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+            <!-- Gallery Item 2 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully lit shot of a modern restaurant interior. The space features sleek, glassmorphic elements, warm wooden tables, and contemporary seating. Large windows let in natural light, creating a bright, airy atmosphere. The color palette includes soft grays, whites, and subtle hints of primary red, reflecting a premium dining aesthetic. The mood is welcoming and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmorPqf5CKat-PdWRtx0TMnqDU49eNHze3DTdjOPMr7JMZUcadgHmFCoRquCmnLHLbKx5n-6LxIo4audPqaM92paYVAEQSAzq1rI-5OxSe9zcbmg_1jDZre6bSdphDHpMHQoX42QCUKiOdg6cnYyENQwfvAhE3vYBN94E_-2AmRno5L6Upk0wJC8gKH6IYh7NlCcWYwPmcd95KnjnlLsi0MZ6tPXvn5ogXPxLN3UX4LI4m_2maIvIKCpoeCwarRj4sbBzRXrg2icEH">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+            <!-- Gallery Item 3 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A dynamic, close-up action shot of a chef working at a live pasta counter. Steam rises gracefully from a pan as the chef tosses fresh ingredients. The lighting is focused and warm, highlighting the culinary skill and freshness of the food. The background is softly blurred, emphasizing the premium, interactive dining experience in a modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOcmS7l_HgBy47yAuzqWJ0L0Xj1PvG6p-dkwPhy84XqMrnLn9NyVS_wE_Hjx8MhXnXkO9ldZG_VnfV9LDapav8hB6nDEm9YxDDjKeUB1S8eqZl2ykq_FzeviBL7EULoM7dAlgko5kZOQvHpxXo-Is89GmsZy7U5FQC8CSns1ifYxvKeib_KzuZzgxoZsf3odVgG2KyG7nhRjt2CpBsYOBCCNIXQdXjFHhXm-26Wb910xvYDkwBt275Mj7DrgR0v9p5EuKSeCmAAyi6">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+            <!-- Gallery Item 4 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A heartwarming, candid photo of a happy family enjoying a meal at a spacious booth. They are laughing and sharing slices of a large, gourmet pizza. The ambient lighting is warm and natural, creating a cozy, joyful mood. The modern, clean lines of the restaurant booth provide a premium backdrop. The color palette features inviting reds and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm4HCbITzY_5gyQLLUvtvbVDGpBqxEqUaS4Twt68RcEZd40ePUi3VkIjsnZQjck4VV7PKkSpmdGUk2CzCqRm6bjzgNWinpQ-rTWLh5dAcrJXnwNpiqsb-BNDaC4y-EGk1tGJkD90d9Hwm4z2GNnMhpqz9P5rrHwBTV7KBQxR8kv6SzKdKtAY7cNs4BTkQVaiFh71LZ0Dr9rj0y4fW8FAQRK7t8LxJRnP0dlyrbJNDUuoAdVFvLoxJKxhbxRDd0Cl2ieyc4qI4puqbG">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+            <!-- Gallery Item 5 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An elegant, close-up shot of a sophisticated dessert station. Assorted mini pastries, colorful macarons, and rich chocolate cakes are beautifully arranged on tiered glass stands. The lighting is soft and bright, emphasizing the high-end presentation. The aesthetic is clean and modern, with a focus on vibrant colors popping against a neutral, light-mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoL6tS5VyPHvbP-2wQJwZqJAIbPH0BhanqF1OH50f-Ioes-Jd7Rop4Uv0eSGlNHuE9N33ggTxGUGc-abiit9Bd7Xq8JL5zrHZhj00H2-7tB1iQ6r-jlQwlxIWPLnmwT7U6gSXb_82I-bt_-jHmC_uwn361Lv8KRhvwk-uv__qL43a8RhQobUNm64_x3r6CbacJm4CRn02iED-VsKxMBT6apNOiiw-bxhYYIZsinMg2jXP-cyRPi-RE6x3FmfIjoeG7gBvXe6Nr4EO7">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+            <!-- Gallery Item 6 -->
+            <div class="masonry-item rounded-xl overflow-hidden glass-panel soft-shadow group cursor-pointer relative" onclick="openLightbox(this.querySelector('img').src)">
+                <img class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide angle shot of the restaurant's expansive seating area during a busy but relaxed evening. Modern pendant lights hang above rows of neatly arranged tables. The atmosphere feels lively yet sophisticated, reflecting an approachable luxury aesthetic. The color scheme is dominated by warm neutrals with striking red accents in the decor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc8ERUN_agfjFMx1f7wxMlBljJpVzP8oKgXq1Po0lMMCxzQ6E_x4PIn0f1dqGq-Kv6Q4fkbz6r4TbFK8VF4tuyRno0Eo-5ScxMuncYcXfPEVqgJ_haVCRabpktbafjnSdPDHlIzm5-12pAzyTre44xvE88CKyPoat8cYskKlysdpRPIfLPE2CUv85uRFEJM4al7dBeoUJyevaXkKdtvRlEnDdEVOaqAl2UzIqg0ao8DW2G_4wV7wwsknmUarVSQRjGMEV1vzAuHxGP">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="flex justify-center mt-12">
+            <button class="bg-surface border border-outline-variant text-on-surface-variant rounded-full px-8 py-3 font-label-bold hover:text-primary hover:border-primary hover:shadow-md transition-all">
+                Load More Photos
+            </button>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full rounded-t-xl mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-mobile md:px-container-desktop py-section-gap-sm max-w-[1280px] mx-auto">
+        <div class="flex flex-col gap-4">
+            <img alt="SAMJOHN'S Logo" class="h-16 w-auto object-contain mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrRGxd4LNBAlduoCVCQXE2MV0VlxppHPPysRew1P1kWGGG8qeTg9F3qX8AZ4j0tBGZGAQefTYoE-pgWpBc6khvckdOGF7Zg8-kN5wODV_4UaahgoXAtauaUB5S8Z_LApKz_KDPX_m0YzCP6at2nTq9wIZPSIbhSgVgcGWPm1BJ0AFM-k8Il5BzfxjE7RYBMFOqwFzCn_-l4qepjYQlxOJ4ialTlzPonvwjzvs4ClPPiUmJFSBTf3X-S9hQ9Vl_DgC0Ez4YRfxt47MS">
+            <p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">
+                Premium pizza and buffet experience for the whole family.
+            </p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Terms of Service</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="index.html">Home</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="about.html">About Us</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="buffet.html">Buffet Plans</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="gallery.html">Gallery</a>
+            <a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="reviews.html">Reviews</a>
+        </div>
+        <div class="md:col-span-2 flex items-end justify-start md:justify-end">
+            <span class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface">
+                © 2026 SAMJOHN'S Pizza &amp; Buffet. All rights reserved.
+            </span>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating Action Button (Mobile Only) -->
+<button class="md:hidden fixed bottom-6 right-6 bg-secondary-container text-on-secondary-container rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-40 hover:scale-105 active:scale-95 transition-transform btn-reserve">
+    <span class="material-symbols-outlined" style="font-size: 24px; font-variation-settings: 'FILL' 1;">restaurant</span>
+</button>
+
+<!-- Lightbox Modal -->
+<div class="lightbox flex items-center justify-center" id="imageLightbox" style="display: none;" onclick="closeLightbox()">
+    <span class="close" onclick="closeLightbox()">×</span>
+    <!-- Spinner loader -->
+    <div id="lightboxSpinner" class="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent absolute z-0"></div>
+    <img alt="Expanded Gallery Image" class="lightbox-content shadow-2xl opacity-0 z-10" id="lightboxImage" src="">
+</div>
+
+<script>
+    // Lightbox Logic
+    window.openLightbox = function(imageSrc) {
+        const lightbox = document.getElementById('imageLightbox');
+        const img = document.getElementById('lightboxImage');
+        const spinner = document.getElementById('lightboxSpinner');
+        
+        lightbox.style.display = "flex";
+        document.body.style.overflow = 'hidden'; // Prevent scrolling behind lightbox
+        
+        // Hide image and show spinner
+        img.classList.add('opacity-0');
+        spinner.style.display = "block";
+        img.src = "";
+        
+        // Load new image source
+        img.src = imageSrc;
+        
+        img.onload = function() {
+            spinner.style.display = "none";
+            img.classList.remove('opacity-0');
+        };
+        
+        img.onerror = function() {
+            spinner.style.display = "none";
+            if (window.showToast) {
+                window.showToast("Failed to load image.", "error");
+            }
+        };
+    };
+
+    window.closeLightbox = function() {
+        const lightbox = document.getElementById('imageLightbox');
+        const img = document.getElementById('lightboxImage');
+        lightbox.style.display = "none";
+        img.src = "";
+        img.classList.add('opacity-0');
+        document.body.style.overflow = 'auto';
+    };
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+    
+    // Prevent closing when clicking the image itself
+    document.getElementById('lightboxImage').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
+<script src="site.js"></script>
+</body>
+</html>

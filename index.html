@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SAMJOHN'S Pizza &amp; Buffet | Hyderabad's Favorite Buffet Experience</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    },
+                    "keyframes": {
+                        "fade-in-up": {
+                            "0%": { "opacity": "0", "transform": "translateY(20px)" },
+                            "100%": { "opacity": "1", "transform": "translateY(0)" }
+                        },
+                        "fade-in": {
+                            "0%": { "opacity": "0" },
+                            "100%": { "opacity": "1" }
+                        }
+                    },
+                    "animation": {
+                        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+                        "fade-in": "fade-in 0.8s ease-out forwards"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .soft-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .hover-scale { transition: transform 0.2s ease; }
+        .hover-scale:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="antialiased min-h-screen bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface relative pt-[80px]">
+<!-- TopNavBar -->
+<nav aria-label="Main Navigation" class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl dark:bg-surface-dim/60 shadow-sm transition-all duration-300">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-7xl mx-auto w-full">
+        <a href="index.html" class="flex items-center hover:scale-105 transition-transform duration-200">
+            <img alt="SAMJOHN'S Pizza &amp; Buffet Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+        </a>
+        <div class="hidden md:flex gap-6">
+            <a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="index.html">Home</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200" href="about.html">About</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200" href="buffet.html">Buffet Plans</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200" href="gallery.html">Gallery</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200" href="reviews.html">Reviews</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="hidden md:block font-body-md text-body-md text-primary dark:text-inverse-primary hover:text-primary-container transition-colors font-bold btn-reserve">Contact</button>
+            <button class="bg-primary-container text-on-primary font-label-bold px-6 py-2 rounded-full hover-scale active:scale-95 transition-all duration-150 btn-reserve">Reserve a Table</button>
+            <button aria-label="Menu" class="p-2 rounded-full hover:bg-surface-variant transition-colors text-primary md:hidden">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+            </button>
+            <a href="tel:+919876543210" aria-label="call" class="p-2 rounded-full hover:bg-surface-variant transition-colors text-primary hidden md:inline-flex">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center pt-20 pb-section-gap-lg px-container-padding-mobile md:px-container-padding-desktop max-w-7xl mx-auto overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full relative z-10">
+        <div class="flex flex-col gap-6">
+            <div class="flex flex-wrap gap-3">
+                <span class="bg-surface-container-low text-primary font-label-bold px-3 py-1 rounded-full text-sm border border-outline-variant opacity-0 animate-fade-in-up [animation-delay:100ms] motion-reduce:animate-none motion-reduce:opacity-100 transition-all duration-300 hover:scale-105 hover:shadow-md hover:border-primary cursor-pointer" onclick="openReservationModal()">Veg Buffet ₹699</span>
+                <span class="bg-surface-container-low text-primary font-label-bold px-3 py-1 rounded-full text-sm border border-outline-variant opacity-0 animate-fade-in-up [animation-delay:200ms] motion-reduce:animate-none motion-reduce:opacity-100 transition-all duration-300 hover:scale-105 hover:shadow-md hover:border-primary cursor-pointer" onclick="openReservationModal()">Non-Veg Buffet ₹799</span>
+                <span class="bg-secondary-container text-on-secondary-container font-label-bold px-3 py-1 rounded-full text-sm opacity-0 animate-fade-in-up [animation-delay:300ms] motion-reduce:animate-none motion-reduce:opacity-100">Unlimited Soft Drinks</span>
+            </div>
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface opacity-0 animate-fade-in-up [animation-delay:200ms] motion-reduce:animate-none motion-reduce:opacity-100">Hyderabad's Favorite Pizza &amp; Buffet Destination</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg opacity-0 animate-fade-in-up [animation-delay:300ms] motion-reduce:animate-none motion-reduce:opacity-100">Enjoy unlimited pizzas, live counters, desserts, beverages, Indian and international cuisine—all under one roof.</p>
+            <div class="flex flex-wrap gap-4 mt-4 opacity-0 animate-fade-in-up [animation-delay:400ms] motion-reduce:animate-none motion-reduce:opacity-100">
+                <button class="bg-primary-container text-on-primary font-label-bold px-8 py-3 rounded-full hover-scale soft-shadow shadow-primary/20 btn-reserve">Reserve a Table</button>
+                <a href="menu.html" class="bg-surface text-primary font-label-bold px-8 py-3 rounded-full border-2 border-primary hover:bg-primary-fixed hover-scale transition-colors inline-block text-center">View Menu</a>
+            </div>
+        </div>
+        <div class="relative h-[400px] lg:h-[600px] w-full opacity-0 animate-fade-in [animation-delay:500ms] motion-reduce:animate-none motion-reduce:opacity-100">
+            <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-4">
+                <div class="relative col-span-2 row-span-1 rounded-xl overflow-hidden glass-panel soft-shadow">
+                    <img class="w-full h-full object-cover" alt="Fresh Out of Oven Cheese Burst Pizza" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJiocRDkOz1Un_s3ccBVMhFScNucgH-2byHZ3aY3cHe7N4maiMogmIEnNjKyZ3BVCrrKrkzsxyWhYnW1ZjM0mZmPn1h5Pf-EZ0AKVKX9axVi7kjjpwpI0_7VaBvpHbDy-yOTNIrO1kq9GUtHmXaWonIiMC6Gv5eQeP-Vv4KCXByqs3hlwc6dsjzaXTFKWfFMZulT6mPFIHRStQqKbgluqmLX3snMoIcntblp5wdE7Dv3e4D6YrcU7Aj8id5g0YJ3IFLUpvZWm0Uln-"/>
+                </div>
+                <div class="relative rounded-xl overflow-hidden glass-panel soft-shadow">
+                    <img class="w-full h-full object-cover" alt="Authentic Hyderabadi Dum Biryani served in tandoor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpDGfTfZntUPn1Wl22zEqoQJHABYfs_kAyPNqJ9adyAAe9UeXteEU7i7LEwLUWLQuFHIhcb-sDQ3PbogewyW5AB0Zn5_wmKuyVPU4tuPgl2rd2-JxSyEVjst_vcv1VBL28gF8erlBbvm2CWmg19NsSGMwUUv6QTNIbvKgKm6QcxJLxEMa06Uwx6QmGsege_Pv-ZRCmKeaAEYQIxo11-ljvOB0ODOiIRg_L0J2_pkdleFycd6ZUydRpkBQTIqAnccNNQn_H8LSqHY_k"/>
+                </div>
+                <div class="relative rounded-xl overflow-hidden glass-panel soft-shadow">
+                    <img class="w-full h-full object-cover" alt="Live counter chocolate fountain dessert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBkIxnZKyrgewFBaN5hqYxQgN1Z4WjgnlRN8EwwokjiKHooT_KekcdZqNuq3m8S1kV27XqNmOzRORtuQidBec3ScHuJjWZi7DqdBL0H3tREUDIfIOhaSqGBje9OC2xY8oNBzwzkstjImP07t-awSav9EY_MEa4G2tQLRegriMCmFBFQCRHIJ78AujY1wEaVwkC6m2bBWq7Kz497O9PruH70ImhnQo79iIUI_jlP_QylJw8SNsQHAfiQxLrBLTVO8U8bxoTjIUy5GeY"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Decorative subtle background blob -->
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-1/2 bg-primary-fixed-dim/20 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+</section>
+
+<!-- Trust Bar -->
+<section class="bg-surface-container-low py-10 px-container-padding-mobile md:px-container-padding-desktop">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
+        <div class="flex items-center gap-3 opacity-0 animate-fade-in-up [animation-delay:100ms] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+            <div class="flex flex-col">
+                <span class="font-headline-sm text-headline-sm text-on-surface">5000+</span>
+                <span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Happy Customers</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 opacity-0 animate-fade-in-up [animation-delay:200ms] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+            <div class="flex flex-col">
+                <span class="font-headline-sm text-headline-sm text-on-surface">40+</span>
+                <span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Buffet Items</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 opacity-0 animate-fade-in-up [animation-delay:300ms] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span class="material-symbols-outlined text-primary text-3xl">local_drink</span>
+            <div class="flex flex-col">
+                <span class="font-headline-sm text-headline-sm text-on-surface">Unlimited</span>
+                <span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Soft Drinks</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 opacity-0 animate-fade-in-up [animation-delay:400ms] motion-reduce:animate-none motion-reduce:opacity-100">
+            <span class="material-symbols-outlined text-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">star</span>
+            <div class="flex flex-col">
+                <span class="font-headline-sm text-headline-sm text-on-surface">4.5★</span>
+                <span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Average Rating</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full py-section-gap-sm bg-surface-container-highest dark:bg-inverse-surface mt-section-gap-lg">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-7xl mx-auto w-full">
+        <div class="col-span-1 md:col-span-2 flex flex-col gap-4">
+            <div class="mb-2">
+                <img alt="SAMJOHN'S Pizza &amp; Buffet Logo" class="h-16 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface max-w-md">
+                Premium Pizza &amp; Buffet experience in Hyderabad. Fresh ingredients, live counters, and an unforgettable dining atmosphere for the whole family.
+            </p>
+            <div class="pt-4">
+                <span class="font-caption text-caption text-on-surface-variant opacity-80 hover:opacity-100 transition-opacity">
+                    © 2026 SAMJOHN'S Pizza &amp; Buffet. All rights reserved.
+                </span>
+            </div>
+        </div>
+        <div class="flex flex-col gap-3">
+            <h4 class="font-label-bold text-label-bold text-on-surface dark:text-inverse-on-surface mb-2">Legal</h4>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex flex-col gap-3">
+            <h4 class="font-label-bold text-label-bold text-on-surface dark:text-inverse-on-surface mb-2">Navigation</h4>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="about.html">About Us</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="buffet.html">Buffet Plans</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="reviews.html">Reviews</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="admin.html">Admin Login</a>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

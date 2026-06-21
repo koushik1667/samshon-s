@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Customer Reviews | SAMJOHN'S Pizza &amp; Buffet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Glassmorphism utility for cards */
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-white/60 dark:bg-inverse-surface/60 backdrop-blur-md shadow-[0_4px_20px_0_rgba(0,0,0,0.05)]">
+    <div class="flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop py-4 max-w-[1280px] mx-auto">
+        <a class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight" href="index.html">
+            <img alt="SAMJOHN'S Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrRGxd4LNBAlduoCVCQXE2MV0VlxppHPPysRew1P1kWGGG8qeTg9F3qX8AZ4j0tBGZGAQefTYoE-pgWpBc6khvckdOGF7Zg8-kN5wODV_4UaahgoXAtauaUB5S8Z_LApKz_KDPX_m0YzCP6at2nTq9wIZPSIbhSgVgcGWPm1BJ0AFM-k8Il5BzfxjE7RYBMFOqwFzCn_-l4qepjYQlxOJ4ialTlzPonvwjzvs4ClPPiUmJFSBTf3X-S9hQ9Vl_DgC0Ez4YRfxt47MS">
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="index.html">Home</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="about.html">About</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="menu.html">Menu</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="buffet.html">Buffet Plans</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary transition-colors" href="gallery.html">Gallery</a>
+            <a class="text-primary dark:text-primary-fixed font-label-bold border-b-2 border-primary pb-1" href="reviews.html">Reviews</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button class="hidden md:inline-flex items-center justify-center bg-primary-container text-on-primary font-label-bold px-6 py-2 rounded-full hover:scale-105 transition-transform duration-300 active:scale-95 btn-reserve">
+                Reserve a Table
+            </button>
+            <button aria-label="Menu" class="md:hidden text-on-surface p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex-grow">
+    <!-- Hero Section: Overall Rating -->
+    <section class="relative py-section-gap-lg overflow-hidden flex items-center justify-center min-h-[400px]">
+        <div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-20" alt="Restaurant dining tables setup" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAk9A5wjIuzaTKNR56BRYA9_4i2bxviCvQ55aZIzR13sxxbvCA68hFiZsgjLHx8VUrkFIRLY5mob068NqpQRyfe5AmkzdSpycn6VtWHI2JS6MjCGw0OZUMwAkcFn6fgq8KDvYhWgIorJbTgRT3BZWV8AydAbM2--B1p5cLlRiEa-4uhMRAIZ_XSfMgM9wHHBLL7OAAOl9XyuiH5K7zbG1GNJgMWpduLiW1cXj28GoEhB4b7yi1s-eD1HeN0YUvvpyfHefPWiF_Iq8IU')"></div>
+        <div class="relative z-10 px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto text-center flex flex-col items-center">
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">
+                What Our Guests Say
+            </h1>
+            <div class="glass-card rounded-2xl p-8 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-white/50 flex flex-col items-center max-w-md w-full">
+                <div class="text-[72px] leading-none font-bold text-primary-container font-headline-md tracking-tighter mb-2">
+                    4.8
+                </div>
+                <div class="flex text-secondary-container mb-3">
+                    <span class="material-symbols-outlined filled text-[32px]">star</span>
+                    <span class="material-symbols-outlined filled text-[32px]">star</span>
+                    <span class="material-symbols-outlined filled text-[32px]">star</span>
+                    <span class="material-symbols-outlined filled text-[32px]">star</span>
+                    <span class="material-symbols-outlined filled text-[32px]">star_half</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-on-surface-variant text-center">
+                    Based on over <strong class="text-on-surface font-semibold">1,200+</strong> reviews from our happy diners.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="py-section-gap-sm px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto bg-surface-container-low rounded-t-[40px] -mt-10 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mt-10">
+            <!-- Review Card 1 -->
+            <article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center font-headline-sm text-headline-sm">
+                            A
+                        </div>
+                        <div>
+                            <h3 class="font-label-bold text-label-bold text-on-surface">Arjun K.</h3>
+                            <p class="font-caption text-caption text-on-surface-variant">2 days ago</p>
+                        </div>
+                    </div>
+                    <div class="flex text-secondary-container">
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                    </div>
+                </div>
+                <h4 class="font-label-bold text-label-bold text-on-surface mb-2">Best buffet in Kukatpally!</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                    "The variety is absolutely staggering. From the fresh wood-fired pizzas to the extensive dessert section, everything was top-notch. The staff was incredibly attentive even during the weekend rush. Highly recommend for family dinners."
+                </p>
+            </article>
+
+            <!-- Review Card 2 -->
+            <article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed flex items-center justify-center font-headline-sm text-headline-sm">
+                            P
+                        </div>
+                        <div>
+                            <h3 class="font-label-bold text-label-bold text-on-surface">Priya Reddy</h3>
+                            <p class="font-caption text-caption text-on-surface-variant">1 week ago</p>
+                        </div>
+                    </div>
+                    <div class="flex text-secondary-container">
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined text-[18px]">star</span>
+                    </div>
+                </div>
+                <h4 class="font-label-bold text-label-bold text-on-surface mb-2">Great ambiance, good food.</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                    "A very premium feel compared to other buffets in the area. The live pasta counter was a highlight for my kids. Only docking one star because the parking area was a bit crowded, but the valet service handled it well."
+                </p>
+            </article>
+
+            <!-- Review Card 3 -->
+            <article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed flex items-center justify-center font-headline-sm text-headline-sm">
+                            M
+                        </div>
+                        <div>
+                            <h3 class="font-label-bold text-label-bold text-on-surface">Mohammed S.</h3>
+                            <p class="font-caption text-caption text-on-surface-variant">2 weeks ago</p>
+                        </div>
+                    </div>
+                    <div class="flex text-secondary-container">
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                    </div>
+                </div>
+                <h4 class="font-label-bold text-label-bold text-on-surface mb-2">Perfect for corporate lunches.</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                    "We hosted a team lunch here for 20 people. The management arranged a private section for us. The food was continuously replenished and tasted fresh. The signature Samjohn's special pizza is a must-try."
+                </p>
+            </article>
+
+            <!-- Review Card 4 -->
+            <article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <img class="w-10 h-10 rounded-full object-cover" alt="Neha Sharma profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVAh5COf-TWPUuFqLBR8bRfgBa-Wm0l-o-19r1Hsl_A9GZnFH13586d-RV_lW2W__vsokl29HmXpmoI4jahT5HajbNuOnOwRgzUETiV0qfQ5WXYpq9t9TFWlfQOLc5EI983WCrIMDJs2SE9dn4JU8yopy8qZk-xlSRBX07fdz90n38hN9tGk6t9It7g5yI6uRggPZxiqlQF3d9j3dM_lY2ilYhWEBXoCPKF7R7QUBTmMMjOg1HLUp5g5eR-kntK8Aok5eiDcdiSKmn">
+                        <div>
+                            <h3 class="font-label-bold text-label-bold text-on-surface">Neha Sharma</h3>
+                            <p class="font-caption text-caption text-on-surface-variant">1 month ago</p>
+                        </div>
+                    </div>
+                    <div class="flex text-secondary-container">
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star</span>
+                        <span class="material-symbols-outlined filled text-[18px]">star_half</span>
+                    </div>
+                </div>
+                <h4 class="font-label-bold text-label-bold text-on-surface mb-2">Desserts are to die for!</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                    "I usually skip buffet desserts because they feel mass-produced, but here they tasted like they came from a high-end patisserie. The tiramisu and the warm brownies were incredible. Main course was great too."
+                </p>
+            </article>
+        </div>
+        <div class="flex justify-center mt-10">
+            <button class="bg-surface-container-lowest text-primary-container border border-primary-container font-label-bold px-8 py-3 rounded-full hover:bg-primary-fixed transition-colors duration-300">
+                Load More Reviews
+            </button>
+        </div>
+    </section>
+
+    <!-- Leave a Review Section -->
+    <section class="py-section-gap-lg px-container-padding-mobile md:px-container-padding-desktop max-w-[1024px] mx-auto">
+        <div class="bg-surface-container-lowest rounded-[24px] p-8 md:p-12 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] border border-outline-variant/20 flex flex-col md:flex-row gap-12 items-start">
+            <div class="w-full md:w-1/3">
+                <h2 class="font-headline-md text-headline-md text-on-surface mb-4">Share Your Experience</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                    We value your feedback! Let us know how we did so we can continue providing you with the best dining experience.
+                </p>
+                <div class="hidden md:flex flex-col gap-4">
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+                        <span class="font-body-md text-body-md">Quality Food</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-primary" data-icon="room_service">room_service</span>
+                        <span class="font-body-md text-body-md">Excellent Service</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-primary" data-icon="celebration">celebration</span>
+                        <span class="font-body-md text-body-md">Great Atmosphere</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-2/3">
+                <form class="flex flex-col gap-6">
+                    <!-- Rating Selector -->
+                    <div>
+                        <label class="block font-label-bold text-label-bold text-on-surface mb-2">Overall Rating *</label>
+                        <div class="flex gap-2 text-surface-dim cursor-pointer" id="star-rating-selector">
+                            <span class="material-symbols-outlined text-[32px] hover:text-secondary-container transition-colors">star</span>
+                            <span class="material-symbols-outlined text-[32px] hover:text-secondary-container transition-colors">star</span>
+                            <span class="material-symbols-outlined text-[32px] hover:text-secondary-container transition-colors">star</span>
+                            <span class="material-symbols-outlined text-[32px] hover:text-secondary-container transition-colors">star</span>
+                            <span class="material-symbols-outlined text-[32px] hover:text-secondary-container transition-colors">star</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-label-bold text-label-bold text-on-surface mb-2" for="reviewer-name">Your Name *</label>
+                            <input class="w-full bg-surface text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md text-body-md" id="reviewer-name" placeholder="John Doe" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block font-label-bold text-label-bold text-on-surface mb-2" for="reviewer-email">Email Address *</label>
+                            <input class="w-full bg-surface text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md text-body-md" id="reviewer-email" placeholder="john@example.com" type="email" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-label-bold text-label-bold text-on-surface mb-2" for="review-text">Your Review *</label>
+                        <textarea class="w-full bg-surface text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md text-body-md resize-y" id="review-text" placeholder="Tell us about your favorite dishes, the service, or the ambiance..." rows="4" required></textarea>
+                    </div>
+                    <button class="self-start bg-primary-container text-on-primary font-label-bold px-8 py-3 rounded-full hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)]" type="submit">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer Component -->
+<footer class="w-full rounded-t-xl bg-surface-container-highest dark:bg-inverse-surface mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-padding-mobile md:px-container-padding-desktop py-section-gap-sm max-w-[1280px] mx-auto">
+        <!-- Brand Column -->
+        <div class="flex flex-col gap-4">
+            <img alt="SAMJOHN'S Logo" class="h-12 w-auto object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrRGxd4LNBAlduoCVCQXE2MV0VlxppHPPysRew1P1kWGGG8qeTg9F3qX8AZ4j0tBGZGAQefTYoE-pgWpBc6khvckdOGF7Zg8-kN5wODV_4UaahgoXAtauaUB5S8Z_LApKz_KDPX_m0YzCP6at2nTq9wIZPSIbhSgVgcGWPm1BJ0AFM-k8Il5BzfxjE7RYBMFOqwFzCn_-l4qepjYQlxOJ4ialTlzPonvwjzvs4ClPPiUmJFSBTf3X-S9hQ9Vl_DgC0Ez4YRfxt47MS">
+            <p class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface opacity-80">
+                Premium pizza and buffet experience bringing family and great food together.
+            </p>
+        </div>
+        <div>
+            <h4 class="font-label-bold text-label-bold text-on-surface dark:text-inverse-on-surface mb-4">Legal</h4>
+            <ul class="space-y-2">
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Terms of Service</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Cookie Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-bold text-label-bold text-on-surface dark:text-inverse-on-surface mb-4">Navigation</h4>
+            <ul class="space-y-2">
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="index.html">Home</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="about.html">About Us</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="menu.html">Menu</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="buffet.html">Buffet Plans</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="gallery.html">Gallery</a></li>
+                <li><a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="reviews.html">Reviews</a></li>
+            </ul>
+        </div>
+        <div class="flex items-end justify-start md:justify-end">
+            <span class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant">
+                © 2026 SAMJOHN'S Pizza &amp; Buffet. All rights reserved.
+            </span>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

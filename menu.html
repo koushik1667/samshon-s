@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Our Menu | SAMJOHN'S Pizza &amp; Buffet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface/60 dark:bg-surface-container-lowest/60 backdrop-blur-xl sticky top-0 w-full z-50 shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] bg-white/60 dark:bg-inverse-surface/60 backdrop-blur-md">
+    <div class="flex justify-between items-center px-container-desktop py-4 max-w-[1280px] mx-auto px-container-padding-mobile md:px-container-padding-desktop">
+        <a class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight hover:scale-105 transition-transform duration-300" href="index.html">
+            <img alt="SAMJOHN'S Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+        </a>
+        <div class="hidden md:flex gap-gutter items-center">
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300" href="index.html">Home</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300" href="about.html">About</a>
+            <a class="text-primary dark:text-primary-fixed font-label-bold border-b-2 border-primary hover:scale-105 transition-transform duration-300" href="menu.html">Menu</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300" href="buffet.html">Buffet Plans</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300" href="gallery.html">Gallery</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300" href="reviews.html">Reviews</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="bg-primary-container text-on-primary font-label-bold text-label-bold px-6 py-2.5 rounded-full hover:scale-105 transition-transform duration-300 active:scale-95 transition-all soft-shadow hidden md:block btn-reserve">Reserve a Table</button>
+            <button aria-label="Menu" class="md:hidden text-on-surface p-2">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="w-full">
+    <!-- Hero Section -->
+    <section class="relative w-full h-[409px] md:h-[512px] flex items-center justify-center overflow-hidden bg-inverse-surface">
+        <div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-60 mix-blend-overlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDm9M2mgRKHjsk_h4bbIG92kQrlii4sWEfA0BgLTJpoI2xElascm60W-6pHvLXc9ty4ffGgq36px3Die5hPGq0y0rAhTIEcUqT16slS8D2blSpyjW0WoL5NilS9ErxG-ZSQqULve1LOGXwc6Nxer5xSfOE6BboStcoXrvf-RJJ0wZdZbi_qywREHV8ySTb2TTQbtsz7MxV8_xMvLYyQ9PcmfpcvrcJX7pQAyB7VvpYMQl7QZoUYcI9rJdQF_-u32Nn3G89pdqSBUJ13')"></div>
+        <div class="relative z-10 text-center px-container-mobile text-on-primary">
+            <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg font-bold mb-4 text-white">Our Menu</h1>
+            <p class="font-body-lg text-body-lg max-w-2xl mx-auto text-white/90">Experience a culinary journey blending authentic Indian flavors with artisanal Italian craftsmanship. Every dish is prepared with passion and premium ingredients.</p>
+        </div>
+    </section>
+
+    <!-- Menu Content -->
+    <div class="max-w-[1280px] mx-auto px-container-mobile md:px-container-desktop py-12 md:py-16">
+        <!-- Interactive Menu Tabs Toggle -->
+        <div class="flex justify-center mb-12">
+            <div class="inline-flex p-1 bg-surface-container-low dark:bg-inverse-surface rounded-full border border-outline-variant/30 shadow-md">
+                <button id="btn-veg-tab" class="flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-tertiary text-on-tertiary shadow-md" onclick="switchMenu('veg')">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    Veg Buffet Menu
+                </button>
+                <button id="btn-nonveg-tab" class="flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-primary dark:text-outline-variant dark:hover:text-primary-fixed" onclick="switchMenu('nonveg')">
+                    <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_dining</span>
+                    Non-Veg Buffet Menu
+                </button>
+            </div>
+        </div>
+
+<!-- Veg Buffet Menu Content -->
+        <div id="veg-menu-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500 opacity-100 transform translate-y-0">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Non-Veg Buffet Menu Content -->
+        <div id="nonveg-menu-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500 opacity-100 transform translate-y-0 hidden">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+</main>
+
+<script>
+    function switchMenu(type) {
+        const vegTab = document.getElementById('btn-veg-tab');
+        const nonvegTab = document.getElementById('btn-nonveg-tab');
+        const vegContent = document.getElementById('veg-menu-content');
+        const nonvegContent = document.getElementById('nonveg-menu-content');
+        
+        if (type === 'veg') {
+            vegTab.className = "flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-tertiary text-on-tertiary shadow-md";
+            nonvegTab.className = "flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-primary dark:text-outline-variant dark:hover:text-primary-fixed";
+            
+            vegContent.classList.remove('hidden');
+            nonvegContent.classList.add('hidden');
+        } else {
+            vegTab.className = "flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-tertiary dark:text-outline-variant dark:hover:text-tertiary-fixed-dim";
+            nonvegTab.className = "flex items-center gap-2.5 px-8 py-3.5 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-primary text-on-primary shadow-md";
+            
+            vegContent.classList.add('hidden');
+            nonvegContent.classList.remove('hidden');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderMenu();
+    });
+
+    function renderMenu() {
+        const db = window.getMenuDatabase();
+        
+        const vegContent = document.getElementById('veg-menu-content');
+        const nonvegContent = document.getElementById('nonveg-menu-content');
+        
+        if (vegContent) {
+            vegContent.innerHTML = '';
+            db.veg.forEach(cat => {
+                if (cat.items.length === 0) return;
+                
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl p-6 border border-tertiary-fixed-dim/20 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col gap-4";
+                
+                let itemsListHTML = cat.items.map(item => `
+                    <li class="font-body-md text-on-surface-variant flex items-start gap-2.5">
+                        <span class="material-symbols-outlined text-tertiary text-[18px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span>${item.name}</span>
+                    </li>
+                `).join('');
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-center pb-3 border-b border-outline-variant/20">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-tertiary text-2xl">${cat.icon || 'restaurant'}</span>
+                            <h3 class="font-headline-sm text-lg text-on-surface font-semibold">${cat.category}</h3>
+                        </div>
+                        <span class="border border-tertiary p-0.5 flex items-center justify-center rounded-sm w-4 h-4" title="Vegetarian">
+                            <span class="bg-tertiary rounded-full w-2 h-2"></span>
+                        </span>
+                    </div>
+                    <ul class="space-y-3">
+                        ${itemsListHTML}
+                    </ul>
+                `;
+                vegContent.appendChild(card);
+            });
+        }
+        
+        if (nonvegContent) {
+            nonvegContent.innerHTML = '';
+            db.nonveg.forEach(cat => {
+                if (cat.items.length === 0) return;
+                
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl p-6 border border-primary-fixed-dim/20 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col gap-4";
+                
+                let itemsListHTML = cat.items.map(item => `
+                    <li class="font-body-md text-on-surface-variant flex items-start gap-2.5">
+                        <span class="material-symbols-outlined text-primary text-[18px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span>${item.name}</span>
+                    </li>
+                `).join('');
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-center pb-3 border-b border-outline-variant/20">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">${cat.icon || 'restaurant'}</span>
+                            <h3 class="font-headline-sm text-lg text-on-surface font-semibold">${cat.category}</h3>
+                        </div>
+                        <span class="border border-primary p-0.5 flex items-center justify-center rounded-sm w-4 h-4" title="Non-Vegetarian">
+                            <span class="bg-primary rounded-full w-2 h-2"></span>
+                        </span>
+                    </div>
+                    <ul class="space-y-3">
+                        ${itemsListHTML}
+                    </ul>
+                `;
+                nonvegContent.appendChild(card);
+            });
+        }
+    }
+</script>
+<script src="site.js"></script>
+</body>
+</html>

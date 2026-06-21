@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Buffet Plans | SAMJOHN'S Pizza &amp; Buffet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px 0 rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface/60 dark:bg-surface-container-lowest/60 backdrop-blur-xl shadow-[0_4px_20px_0_rgba(0,0,0,0.05)] bg-white/60 dark:bg-inverse-surface/60 backdrop-blur-md">
+    <div class="flex justify-between items-center px-container-desktop py-4 max-w-[1280px] mx-auto px-container-padding-mobile md:px-container-padding-desktop">
+        <a class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight" href="index.html">
+            <img alt="SAMJOHN'S Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+        </a>
+        <div class="hidden md:flex items-center space-x-gutter">
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="index.html">Home</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="about.html">About</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="menu.html">Menu</a>
+            <a class="text-primary dark:text-primary-fixed font-label-bold border-b-2 border-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="buffet.html">Buffet Plans</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="gallery.html">Gallery</a>
+            <a class="text-on-surface-variant dark:text-outline-variant font-body-md hover:text-primary hover:scale-105 transition-transform duration-300 active:scale-95 transition-all" href="reviews.html">Reviews</a>
+        </div>
+        <div class="hidden md:block">
+            <button class="bg-primary-container text-on-primary hover:scale-105 active:scale-95 transition-all duration-300 font-label-bold text-label-bold px-6 py-3 rounded-full soft-shadow btn-reserve">Reserve a Table</button>
+        </div>
+        <button aria-label="Menu" class="md:hidden text-primary p-2">
+            <span class="material-symbols-outlined" data-icon="menu">menu</span>
+        </button>
+    </div>
+</nav>
+
+<main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative pt-section-gap-sm pb-section-gap-lg px-container-padding-mobile md:px-container-padding-desktop overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="bg-cover bg-center w-full h-full opacity-20" alt="Gourmet Buffet spread layout" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGwdIRyfzFB6vyJCugrLi-qsMnSl2M1sE7VbJuduslgCpt9JTvRCnGfPuulREGMJZgkX5Q2CoEXeSyM0G_6FSHIV9Ua0qsIck0YwNMbK9kf3MGWTsme9C2jxUR7XYAHcfny9x387w496sT6MDirXxfzL_bwzuimVaIlte1NvgLKt2WpLW-kHF5FMHCColD7loEmMga9MNodUqfVFDb-JRlmq9IPiIZG19wj9b_ukJL1RNvrYp0Viq-xVRTRSWBgB8KRfNC2lWx3tbT')"></div>
+        </div>
+        <div class="relative z-10 max-w-[1280px] mx-auto text-center">
+            <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-6">Unlimited Feast Awaits</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">Experience culinary delight with our carefully curated buffet plans. Choose between our vibrant vegetarian spread or our comprehensive non-vegetarian feast.</p>
+        </div>
+        
+        <!-- Pricing Tables Container -->
+        <div class="relative z-10 max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8">
+            <!-- Veg Plan Card -->
+            <div class="glass-panel rounded-xl soft-shadow p-8 flex flex-col hover:scale-[1.02] transition-transform duration-300 border border-outline-variant/30">
+                <div class="mb-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="font-headline-md text-headline-md text-on-surface">Veg Buffet</h2>
+                        <span class="material-symbols-outlined text-tertiary-container text-4xl" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    </div>
+                    <div class="flex items-baseline">
+                        <span class="font-headline-sm text-headline-sm text-on-surface-variant">₹</span>
+                        <span class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold mx-1">699</span>
+                        <span class="font-body-md text-body-md text-on-surface-variant">/ person</span>
+                    </div>
+                    <p class="font-caption text-caption text-on-surface-variant mt-2">*Taxes extra as applicable</p>
+                </div>
+                <ul class="flex-grow space-y-4 mb-8">
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Unlimited Soups (2 varieties)
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Gourmet Veg Pizzas
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Live Pasta Counter
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Extensive Veg Main Course
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Assorted Desserts (10+ varieties)
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Unlimited Soft Drinks
+                    </li>
+                </ul>
+                <button class="w-full bg-surface text-primary border-2 border-primary hover:bg-primary-container hover:text-on-primary hover:border-primary-container active:scale-95 transition-all duration-300 font-label-bold text-label-bold py-4 rounded-full soft-shadow text-center btn-reserve">Reserve Veg Plan</button>
+            </div>
+
+            <!-- Non-Veg Plan Card (Most Popular) -->
+            <div class="glass-panel rounded-xl soft-shadow p-8 flex flex-col hover:scale-[1.02] transition-transform duration-300 border-2 border-secondary-container relative">
+                <!-- Most Popular Badge -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-6 py-1 rounded-full shadow-md whitespace-nowrap">
+                    Most Popular
+                </div>
+                <div class="mb-8 mt-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="font-headline-md text-headline-md text-on-surface">Non-Veg Buffet</h2>
+                        <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+                    </div>
+                    <div class="flex items-baseline">
+                        <span class="font-headline-sm text-headline-sm text-on-surface-variant">₹</span>
+                        <span class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold mx-1">799</span>
+                        <span class="font-body-md text-body-md text-on-surface-variant">/ person</span>
+                    </div>
+                    <p class="font-caption text-caption text-on-surface-variant mt-2">*Taxes extra as applicable</p>
+                </div>
+                <ul class="flex-grow space-y-4 mb-8">
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-secondary-container mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <strong>Includes all Veg Buffet items</strong>
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Premium Non-Veg Soups
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Signature Meat Pizzas
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Chicken &amp; Seafood Pasta Options
+                    </li>
+                    <li class="flex items-center font-body-md text-body-md text-on-surface">
+                        <span class="material-symbols-outlined text-primary mr-3 text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Elaborate Non-Veg Main Course
+                    </li>
+                </ul>
+                <button class="w-full bg-primary-container text-on-primary hover:bg-surface-tint active:scale-95 transition-all duration-300 font-label-bold text-label-bold py-4 rounded-full soft-shadow text-center btn-reserve">Reserve Non-Veg Plan</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full rounded-t-xl mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-desktop py-section-gap-sm max-w-[1280px] mx-auto px-container-padding-mobile md:px-container-padding-desktop">
+        <div class="col-span-1 md:col-span-4 mb-6 md:mb-0">
+            <img alt="SAMJOHN'S Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+        </div>
+        <div class="col-span-1 md:col-span-4 flex flex-col md:flex-row justify-between items-center border-t border-outline-variant pt-6 mt-6">
+            <div class="text-on-surface dark:text-inverse-on-surface font-body-md text-body-md mb-4 md:mb-0">
+                © 2026 SAMJOHN'S Pizza &amp; Buffet. All rights reserved.
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Terms of Service</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="index.html">Home</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="about.html">About Us</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="menu.html">Menu</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="buffet.html">Buffet Plans</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="gallery.html">Gallery</a>
+                <a class="text-on-surface-variant dark:text-outline-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="reviews.html">Reviews</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

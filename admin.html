@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script id="theme-init">
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin Dashboard | SAMJOHN'S Pizza &amp; Buffet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="site.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410002",
+                        "surface-tint": "#bd1119",
+                        "primary-container": "#d62828",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "primary": "#b20112",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a3f69c",
+                        "surface": "#fcf9f8",
+                        "surface-container": "#f0eded",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffba27",
+                        "tertiary-fixed-dim": "#88d982",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-secondary-fixed": "#271900",
+                        "on-tertiary-fixed": "#002204",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary": "#11651d",
+                        "on-primary-container": "#fff1ef",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#5e4100",
+                        "on-surface-variant": "#5c403d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#d8ffcf",
+                        "on-secondary-container": "#6b4b00",
+                        "surface-variant": "#e5e2e1",
+                        "outline-variant": "#e5bdb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffb702",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#307f34",
+                        "secondary-fixed": "#ffdea9",
+                        "secondary": "#7d5800",
+                        "outline": "#906f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "64px",
+                        "base": "8px",
+                        "section-gap-sm": "40px",
+                        "container-padding-mobile": "16px",
+                        "section-gap-lg": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Poppins"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-bold": ["Inter"],
+                        "headline-md": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .soft-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .radial-glow { background: radial-gradient(circle at center, rgba(178, 1, 18, 0.15) 0%, rgba(255, 183, 2, 0.08) 50%, transparent 100%); }
+    </style>
+</head>
+<body class="bg-background text-on-background dark:bg-inverse-surface dark:text-inverse-on-surface font-body-md antialiased min-h-screen relative flex flex-col">
+
+<!-- Login Page Overlay -->
+<div id="login-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xl transition-all duration-300">
+    <div class="absolute inset-0 radial-glow pointer-events-none"></div>
+    <div class="glass-panel w-full max-w-md p-8 rounded-3xl soft-shadow border border-outline-variant/30 relative flex flex-col items-center">
+        <!-- Logo -->
+        <img alt="SAMJOHN'S Pizza &amp; Buffet Logo" class="h-16 w-auto object-contain mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+        
+        <h2 class="font-headline-md text-2xl text-on-surface text-center mb-2">Admin Portal</h2>
+        <p class="font-body-md text-on-surface-variant text-center mb-8">Access the buffet menu manager database.</p>
+        
+        <form onsubmit="handleLogin(event)" class="w-full space-y-5">
+            <div>
+                <label class="block font-label-bold text-sm text-on-surface mb-2" for="admin-password">Admin Password *</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-[20px]">lock</span>
+                    <input class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant/40 pl-11 pr-4 py-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="admin-password" type="password" placeholder="••••••••" required>
+                </div>
+            </div>
+            
+            <div id="login-error" class="text-error text-sm font-label-bold hidden flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">error</span>
+                <span>Incorrect password. Please try again.</span>
+            </div>
+            
+            <button class="w-full bg-primary text-on-primary hover:bg-primary-container font-label-bold py-3.5 rounded-full hover:scale-[1.02] active:scale-95 transition-all duration-150 shadow-md shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+                <span class="material-symbols-outlined text-[20px]">key</span>
+                Unlock Dashboard
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Main Dashboard Container -->
+<div id="dashboard-container" class="hidden flex-grow flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20 sticky top-0 w-full z-40 shadow-[0_4px_20px_0_rgba(0,0,0,0.02)]">
+        <div class="flex justify-between items-center px-gutter py-4 max-w-7xl mx-auto w-full">
+            <div class="flex items-center gap-3">
+                <img alt="SAMJOHN'S Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0x8bbiVFWuCvIeNFf6-MhpZZsmcfD9j65xMaRe3EmiWmM2q-kojuVKHHn8-CPlsidjhNMsr_-_M_u5r6nTFde3GnblMCk_bNIF4s7FR3dlPkVt3cDZSlIu1XDo8gDI7cITQmodsppNQw4TZvKleU_CwMGOnG2sHYaIQ4TFrbpAVvxC0uo2rOSv-nrcNmLSSRExcJQvPmyr2O2Hw_lu1WiR82Gx8J_noH_8fIao_mHO5XQ1it-LmFTpV93BY6aHuF9Pqbh0Fzeh_as"/>
+                <div class="h-6 w-px bg-outline-variant/40 hidden md:block"></div>
+                <span class="text-sm font-label-bold bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full hidden md:inline-block">Menu Database Manager</span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="menu.html" target="_blank" class="flex items-center gap-2 font-label-bold text-primary hover:text-primary-container transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+                    View Live Menu
+                </a>
+                <button onclick="handleLogout()" class="border border-outline hover:bg-surface-variant text-on-surface-variant font-label-bold px-5 py-2 rounded-full hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">logout</span>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto w-full px-gutter py-8 flex-grow flex flex-col gap-6">
+        <!-- View Tab Switcher (Menu vs Bookings) -->
+        <div class="flex border-b border-outline-variant/30 gap-6">
+            <button id="view-tab-menu" class="font-headline-sm text-lg pb-3 border-b-2 border-primary text-primary font-bold transition-all flex items-center gap-2" onclick="switchView('menu')">
+                <span class="material-symbols-outlined text-[22px]">restaurant_menu</span>
+                Menu Management
+            </button>
+            <button id="view-tab-bookings" class="font-headline-sm text-lg pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all flex items-center gap-2" onclick="switchView('bookings')">
+                <span class="material-symbols-outlined text-[22px]">event_seat</span>
+                Table Bookings
+            </button>
+        </div>
+
+        <!-- Menu Management View -->
+        <div id="menu-view" class="flex flex-col gap-6">
+            <!-- Dashboard Header -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="font-headline-md text-3xl text-on-surface">Menu Dashboard</h1>
+                    <p class="font-body-md text-on-surface-variant">Manage Veg and Non-Veg buffet menu items in real-time.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="confirmReset()" class="bg-surface border border-error text-error hover:bg-error/5 font-label-bold px-6 py-3 rounded-full flex items-center gap-2 shadow-sm transition-all hover:scale-105 active:scale-95">
+                        <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                        Reset to Defaults
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Tabs for Buffet Types -->
+            <div class="flex justify-center md:justify-start">
+                <div class="inline-flex p-1 bg-surface-container-low rounded-full border border-outline-variant/30 shadow-sm">
+                    <button id="admin-btn-veg" class="flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-tertiary text-on-tertiary shadow-md" onclick="switchAdminTab('veg')">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                        Veg Buffet Menu
+                    </button>
+                    <button id="admin-btn-nonveg" class="flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-primary" onclick="switchAdminTab('nonveg')">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_dining</span>
+                        Non-Veg Buffet Menu
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+                <!-- Left Side: Add Item Form -->
+                <div class="lg:col-span-1 glass-panel rounded-2xl p-6 border border-outline-variant/20 shadow-md flex flex-col gap-6 sticky top-24">
+                    <div>
+                        <h3 class="font-headline-sm text-lg text-on-surface font-semibold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[22px]">add_circle</span>
+                            Add New Item
+                        </h3>
+                        <p class="font-caption text-on-surface-variant mt-1">Fill out the details below to add a new dish to the selected menu.</p>
+                    </div>
+                    
+                    <form id="add-item-form" onsubmit="handleAddItem(event)" class="space-y-4">
+                        <div>
+                            <label class="block font-label-bold text-sm text-on-surface mb-1.5" for="item-category">Select Category *</label>
+                            <select class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="item-category" required>
+                                <!-- Dynamically loaded -->
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-label-bold text-sm text-on-surface mb-1.5" for="item-name">Item Name *</label>
+                            <input class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="item-name" type="text" placeholder="e.g. Tandoori Mushroom Tikka" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-label-bold text-sm text-on-surface mb-1.5" for="item-price">Base Price (INR) *</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/70 font-semibold">₹</span>
+                                <input class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant pl-8 pr-4 p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="item-price" type="number" min="0" placeholder="e.g. 199" required>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant mt-1">* Note: Prices will be saved in the database but are hidden on the client-facing Menu Page as per requirements.</p>
+                        </div>
+                        
+                        <button class="w-full bg-primary text-on-primary font-label-bold py-3.5 rounded-full hover:scale-[1.02] active:scale-95 transition-all duration-150 shadow-md shadow-primary/20 flex items-center justify-center gap-2 mt-4" type="submit">
+                            <span class="material-symbols-outlined text-[20px]">add</span>
+                            Add Item to Menu
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Side: Items List grouped by Category -->
+                <div class="lg:col-span-2 flex flex-col gap-6">
+                    <div class="flex justify-between items-center">
+                        <h3 id="current-tab-title" class="font-headline-sm text-xl text-on-surface font-semibold flex items-center gap-2">
+                            <!-- Loaded dynamically -->
+                        </h3>
+                        <span id="total-items-badge" class="bg-surface-container-high text-on-surface font-label-bold px-3 py-1 rounded-full text-sm">
+                            <!-- Loaded dynamically -->
+                        </span>
+                    </div>
+                    
+                    <div id="admin-menu-list" class="space-y-6">
+                        <!-- Dynamically populated categories with items -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bookings View Container -->
+        <div id="bookings-view" class="hidden flex flex-col gap-6">
+            <!-- Stats Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Total Bookings Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-outline-variant/20 shadow-sm flex items-center gap-4">
+                    <div class="p-3 rounded-full bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-[28px]">calendar_month</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Total Bookings</span>
+                        <span id="stat-total-bookings" class="font-headline-sm text-2xl font-bold text-on-surface">0</span>
+                    </div>
+                </div>
+                <!-- Total Guests Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-outline-variant/20 shadow-sm flex items-center gap-4">
+                    <div class="p-3 rounded-full bg-secondary-container/20 text-secondary">
+                        <span class="material-symbols-outlined text-[28px]">groups</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Total Guests</span>
+                        <span id="stat-total-guests" class="font-headline-sm text-2xl font-bold text-on-surface">0</span>
+                    </div>
+                </div>
+                <!-- Total Veg Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-outline-variant/20 shadow-sm flex items-center gap-4">
+                    <div class="p-3 rounded-full bg-tertiary/10 text-tertiary">
+                        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Veg Guests</span>
+                        <span id="stat-total-veg" class="font-headline-sm text-2xl font-bold text-on-surface">0</span>
+                    </div>
+                </div>
+                <!-- Total Non-Veg Card -->
+                <div class="glass-panel rounded-2xl p-5 border border-outline-variant/20 shadow-sm flex items-center gap-4">
+                    <div class="p-3 rounded-full bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">local_dining</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Non-Veg Guests</span>
+                        <span id="stat-total-nonveg" class="font-headline-sm text-2xl font-bold text-on-surface">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings List Table -->
+            <div class="glass-panel rounded-2xl border border-outline-variant/20 shadow-md p-6 flex flex-col gap-4">
+                <div class="flex justify-between items-center pb-4 border-b border-outline-variant/25">
+                    <h3 class="font-headline-sm text-lg text-on-surface font-semibold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[22px]">event_seat</span>
+                        Active Reservations
+                    </h3>
+                    <button onclick="clearAllBookings()" class="text-xs font-label-bold text-error hover:underline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">delete_sweep</span>
+                        Clear All History
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-outline-variant/20 text-xs font-label-bold text-on-surface-variant uppercase tracking-wider">
+                                <th class="py-3 px-4">Date & Time</th>
+                                <th class="py-3 px-4">Customer Details</th>
+                                <th class="py-3 px-4 text-center">Total Guests</th>
+                                <th class="py-3 px-4 text-center">Veg Guests</th>
+                                <th class="py-3 px-4 text-center">Non-Veg Guests</th>
+                                <th class="py-3 px-4 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-table-body" class="font-body-md text-sm text-on-surface-variant divide-y divide-outline-variant/10">
+                            <!-- Dynamically loaded -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="bookings-empty-state" class="hidden flex flex-col items-center justify-center py-12 text-center gap-3">
+                    <span class="material-symbols-outlined text-surface-dim text-6xl">calendar_today</span>
+                    <h4 class="font-headline-sm text-base text-on-surface font-semibold">No reservations found</h4>
+                    <p class="font-caption text-on-surface-variant max-w-xs">When customers book tables using the reservation modal, they will show up here.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Edit Item Modal -->
+<div id="edit-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden" onclick="closeEditModal()">
+    <div class="glass-panel w-full max-w-md p-6 md:p-8 rounded-2xl soft-shadow border border-outline-variant/30 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <!-- Close Button -->
+        <button class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors p-1.5 rounded-full hover:bg-surface-variant/50" onclick="closeEditModal()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <h3 class="font-display-lg text-headline-md text-on-surface mb-2">Edit Item</h3>
+        <p class="font-body-md text-on-surface-variant mb-6">Modify the item details below.</p>
+
+        <form id="edit-item-form" onsubmit="handleSaveEdit(event)" class="space-y-4">
+            <input type="hidden" id="edit-item-id">
+            <input type="hidden" id="edit-item-category">
+            
+            <div>
+                <label class="block font-label-bold text-sm text-on-surface mb-1.5">Category</label>
+                <div id="edit-item-category-display" class="bg-surface-container-high text-on-surface-variant rounded-xl p-3 font-body-md select-none font-semibold">
+                    Category Name
+                </div>
+            </div>
+            
+            <div>
+                <label class="block font-label-bold text-sm text-on-surface mb-1.5" for="edit-item-name">Item Name *</label>
+                <input class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="edit-item-name" type="text" required>
+            </div>
+            
+            <div>
+                <label class="block font-label-bold text-sm text-on-surface mb-1.5" for="edit-item-price">Price (INR) *</label>
+                <div class="relative">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant/70 font-semibold">₹</span>
+                    <input class="w-full bg-surface-container-low text-on-surface rounded-xl border border-outline-variant pl-8 pr-4 p-3 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow font-body-md" id="edit-item-price" type="number" min="0" required>
+                </div>
+            </div>
+            
+            <div class="flex gap-3 pt-4">
+                <button type="button" onclick="closeEditModal()" class="flex-1 border border-outline hover:bg-surface-variant text-on-surface-variant font-label-bold py-3 rounded-full transition-all">
+                    Cancel
+                </button>
+                <button type="submit" class="flex-1 bg-primary text-on-primary hover:bg-primary-container font-label-bold py-3 rounded-full transition-all shadow-md shadow-primary/10">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Reset Confirm Modal -->
+<div id="reset-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden" onclick="closeResetModal()">
+    <div class="glass-panel w-full max-w-sm p-6 rounded-2xl soft-shadow border border-outline-variant/30" onclick="event.stopPropagation()">
+        <h3 class="font-headline-sm text-lg text-error font-semibold flex items-center gap-2 mb-2">
+            <span class="material-symbols-outlined">warning</span>
+            Reset Menu Database?
+        </h3>
+        <p class="font-body-md text-on-surface-variant mb-6">Are you sure you want to restore the buffet menu to the original default items? This will erase all your additions, edits, and pricing updates.</p>
+        
+        <div class="flex gap-3">
+            <button onclick="closeResetModal()" class="flex-1 border border-outline hover:bg-surface-variant text-on-surface-variant font-label-bold py-2.5 rounded-full transition-all">
+                Cancel
+            </button>
+            <button onclick="handleResetDatabase()" class="flex-1 bg-error text-on-error hover:bg-red-700 font-label-bold py-2.5 rounded-full transition-all shadow-md shadow-error/10">
+                Yes, Reset
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="site.js"></script>
+<script>
+    let currentTab = 'veg'; // 'veg' or 'nonveg'
+    let currentView = 'menu'; // 'menu' or 'bookings'
+
+    // On Load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check Authentication status
+        if (sessionStorage.getItem('samjhones_admin_auth') === 'true') {
+            document.getElementById('login-overlay').classList.add('hidden');
+            document.getElementById('dashboard-container').classList.remove('hidden');
+            loadDashboard();
+        }
+    });
+
+    function handleLogin(e) {
+        e.preventDefault();
+        const pwd = document.getElementById('admin-password').value;
+        const err = document.getElementById('login-error');
+        
+        if (pwd === 'koushik') {
+            err.classList.add('hidden');
+            sessionStorage.setItem('samjhones_admin_auth', 'true');
+            
+            // Unlocking transition
+            const overlay = document.getElementById('login-overlay');
+            overlay.classList.add('opacity-0', 'scale-95');
+            
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                document.getElementById('dashboard-container').classList.remove('hidden');
+                loadDashboard();
+                showToast('Welcome back, Admin!', 'verified');
+            }, 300);
+        } else {
+            err.classList.remove('hidden');
+            document.getElementById('admin-password').value = '';
+            document.getElementById('admin-password').focus();
+        }
+    }
+
+    function handleLogout() {
+        sessionStorage.removeItem('samjhones_admin_auth');
+        document.getElementById('dashboard-container').classList.add('hidden');
+        document.getElementById('login-overlay').classList.remove('hidden', 'opacity-0', 'scale-95');
+        document.getElementById('admin-password').value = '';
+        showToast('Logged out successfully.', 'info');
+    }
+
+    function loadDashboard() {
+        if (currentView === 'menu') {
+            populateCategoriesDropdown();
+            renderAdminMenuList();
+        } else {
+            renderBookingsList();
+        }
+    }
+
+    function switchView(view) {
+        currentView = view;
+        const menuTab = document.getElementById('view-tab-menu');
+        const bookingsTab = document.getElementById('view-tab-bookings');
+        
+        const menuView = document.getElementById('menu-view');
+        const bookingsView = document.getElementById('bookings-view');
+        
+        if (view === 'menu') {
+            menuTab.className = "font-headline-sm text-lg pb-3 border-b-2 border-primary text-primary font-bold transition-all flex items-center gap-2";
+            bookingsTab.className = "font-headline-sm text-lg pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all flex items-center gap-2";
+            
+            menuView.classList.remove('hidden');
+            bookingsView.classList.add('hidden');
+        } else {
+            menuTab.className = "font-headline-sm text-lg pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all flex items-center gap-2";
+            bookingsTab.className = "font-headline-sm text-lg pb-3 border-b-2 border-primary text-primary font-bold transition-all flex items-center gap-2";
+            
+            menuView.classList.add('hidden');
+            bookingsView.classList.remove('hidden');
+        }
+        
+        loadDashboard();
+    }
+
+    function switchAdminTab(type) {
+        currentTab = type;
+        const vegBtn = document.getElementById('admin-btn-veg');
+        const nonvegBtn = document.getElementById('admin-btn-nonveg');
+        
+        if (type === 'veg') {
+            vegBtn.className = "flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-tertiary text-on-tertiary shadow-md";
+            nonvegBtn.className = "flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-primary";
+        } else {
+            vegBtn.className = "flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 text-on-surface-variant hover:text-tertiary";
+            nonvegBtn.className = "flex items-center gap-2 px-8 py-3 rounded-full font-label-bold text-label-bold transition-all duration-300 bg-primary text-on-primary shadow-md";
+        }
+        
+        loadDashboard();
+    }
+
+    function populateCategoriesDropdown() {
+        const db = window.getMenuDatabase();
+        const select = document.getElementById('item-category');
+        select.innerHTML = '';
+        
+        const categories = db[currentTab];
+        categories.forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat.category;
+            opt.textContent = cat.category;
+            select.appendChild(opt);
+        });
+    }
+
+    function renderAdminMenuList() {
+        const db = window.getMenuDatabase();
+        const listContainer = document.getElementById('admin-menu-list');
+        listContainer.innerHTML = '';
+        
+        const menuList = db[currentTab];
+        let totalItems = 0;
+        
+        // Header title updates
+        const tabTitle = document.getElementById('current-tab-title');
+        const colorClass = currentTab === 'veg' ? 'text-tertiary' : 'text-primary';
+        const iconName = currentTab === 'veg' ? 'eco' : 'local_dining';
+        tabTitle.innerHTML = `
+            <span class="material-symbols-outlined ${colorClass}" style="font-variation-settings: 'FILL' 1;">${iconName}</span>
+            <span>${currentTab === 'veg' ? 'Vegetarian Menu Items' : 'Non-Vegetarian Menu Items'}</span>
+        `;
+
+        menuList.forEach(cat => {
+            totalItems += cat.items.length;
+            
+            const catCard = document.createElement('div');
+            catCard.className = "glass-panel rounded-2xl p-6 border border-outline-variant/15 shadow-sm flex flex-col gap-4";
+            
+            let itemsRowsHTML = '';
+            if (cat.items.length === 0) {
+                itemsRowsHTML = `
+                    <div class="text-on-surface-variant opacity-60 text-sm italic py-2 text-center">
+                        No items in this category.
+                    </div>
+                `;
+            } else {
+                itemsRowsHTML = cat.items.map(item => `
+                    <div class="flex justify-between items-center py-2.5 border-b border-outline-variant/10 last:border-b-0 hover:bg-surface-container-low/40 px-2 rounded-lg transition-colors">
+                        <div class="flex flex-col">
+                            <span class="font-body-md text-on-surface font-semibold">${item.name}</span>
+                            <span class="text-sm text-on-surface-variant opacity-85">Price: ₹${item.price}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openEditModal('${cat.category}', '${item.id}', '${escapeHtml(item.name)}', ${item.price})" class="p-2 text-secondary hover:bg-secondary-fixed/50 hover:text-on-secondary-container transition-colors rounded-full" title="Edit Item">
+                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                            </button>
+                            <button onclick="handleDeleteItem('${cat.category}', '${item.id}')" class="p-2 text-error hover:bg-error-container hover:text-on-error-container transition-colors rounded-full" title="Delete Item">
+                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            catCard.innerHTML = `
+                <div class="flex justify-between items-center pb-2.5 border-b border-outline-variant/20">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-on-surface-variant text-[20px]">${cat.icon || 'restaurant'}</span>
+                        <h4 class="font-headline-sm text-base text-on-surface font-semibold">${cat.category}</h4>
+                    </div>
+                    <span class="text-[11px] font-label-bold bg-surface-container-high px-2.5 py-0.5 rounded-full text-on-surface-variant opacity-80">${cat.items.length} items</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                    ${itemsRowsHTML}
+                </div>
+            `;
+            listContainer.appendChild(catCard);
+        });
+
+        document.getElementById('total-items-badge').textContent = `Total: ${totalItems} items`;
+    }
+
+    function handleAddItem(e) {
+        e.preventDefault();
+        const categoryName = document.getElementById('item-category').value;
+        const nameInput = document.getElementById('item-name');
+        const priceInput = document.getElementById('item-price');
+        
+        const name = nameInput.value.trim();
+        const price = parseInt(priceInput.value);
+        
+        if (!name || isNaN(price)) return;
+        
+        const db = window.getMenuDatabase();
+        const categoryObj = db[currentTab].find(c => c.category === categoryName);
+        
+        if (categoryObj) {
+            // Generate unique ID
+            const randomSuffix = Math.random().toString(36).substr(2, 5);
+            const id = `${currentTab === 'veg' ? 'v' : 'nv'}_custom_${randomSuffix}`;
+            
+            categoryObj.items.push({ id, name, price });
+            window.saveMenuDatabase(db);
+            
+            // Reset fields
+            nameInput.value = '';
+            priceInput.value = '';
+            
+            loadDashboard();
+            showToast('"' + name + '" added successfully!', 'check_circle');
+        }
+    }
+
+    function handleDeleteItem(categoryName, itemId) {
+        const db = window.getMenuDatabase();
+        const categoryObj = db[currentTab].find(c => c.category === categoryName);
+        
+        if (categoryObj) {
+            const index = categoryObj.items.findIndex(item => item.id === itemId);
+            if (index > -1) {
+                const itemName = categoryObj.items[index].name;
+                categoryObj.items.splice(index, 1);
+                window.saveMenuDatabase(db);
+                
+                loadDashboard();
+                showToast('"' + itemName + '" deleted.', 'delete');
+            }
+        }
+    }
+
+    // Modal Edit Functions
+    function openEditModal(category, id, name, price) {
+        document.getElementById('edit-item-id').value = id;
+        document.getElementById('edit-item-category').value = category;
+        document.getElementById('edit-item-category-display').textContent = category;
+        document.getElementById('edit-item-name').value = name;
+        document.getElementById('edit-item-price').value = price;
+        
+        document.getElementById('edit-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeEditModal() {
+        document.getElementById('edit-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function handleSaveEdit(e) {
+        e.preventDefault();
+        const id = document.getElementById('edit-item-id').value;
+        const categoryName = document.getElementById('edit-item-category').value;
+        const name = document.getElementById('edit-item-name').value.trim();
+        const price = parseInt(document.getElementById('edit-item-price').value);
+        
+        if (!name || isNaN(price)) return;
+        
+        const db = window.getMenuDatabase();
+        const categoryObj = db[currentTab].find(c => c.category === categoryName);
+        
+        if (categoryObj) {
+            const item = categoryObj.items.find(i => i.id === id);
+            if (item) {
+                item.name = name;
+                item.price = price;
+                window.saveMenuDatabase(db);
+                
+                closeEditModal();
+                loadDashboard();
+                showToast('Item details updated successfully!', 'check_circle');
+            }
+        }
+    }
+
+    // Reset database confirmation
+    function confirmReset() {
+        document.getElementById('reset-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeResetModal() {
+        document.getElementById('reset-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function handleResetDatabase() {
+        window.resetMenuDatabase();
+        closeResetModal();
+        loadDashboard();
+        showToast('Database reset to original buffet menu.', 'restart_alt');
+    }
+
+    // Bookings helpers
+    function renderBookingsList() {
+        let bookings = [];
+        try {
+            bookings = JSON.parse(localStorage.getItem('samjhones_bookings')) || [];
+        } catch (e) {
+            bookings = [];
+        }
+        
+        // Sort bookings by date and time
+        bookings.sort((a, b) => new Date(a.date + ' ' + a.time.split(' ')[0]) - new Date(b.date + ' ' + b.time.split(' ')[0]));
+        
+        let totalBookings = bookings.length;
+        let totalGuests = 0;
+        let totalVeg = 0;
+        let totalNonveg = 0;
+        
+        bookings.forEach(b => {
+            totalGuests += b.guests;
+            totalVeg += b.vegCount || 0;
+            totalNonveg += b.nonvegCount || 0;
+        });
+        
+        document.getElementById('stat-total-bookings').textContent = totalBookings;
+        document.getElementById('stat-total-guests').textContent = totalGuests;
+        document.getElementById('stat-total-veg').textContent = totalVeg;
+        document.getElementById('stat-total-nonveg').textContent = totalNonveg;
+        
+        const tableBody = document.getElementById('bookings-table-body');
+        const emptyState = document.getElementById('bookings-empty-state');
+        
+        tableBody.innerHTML = '';
+        
+        if (totalBookings === 0) {
+            emptyState.classList.remove('hidden');
+            tableBody.closest('table').classList.add('hidden');
+        } else {
+            emptyState.classList.add('hidden');
+            tableBody.closest('table').classList.remove('hidden');
+            
+            bookings.forEach(b => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-outline-variant/10 hover:bg-surface-container-low/30 transition-colors";
+                
+                const formattedDate = new Date(b.date).toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                tr.innerHTML = `
+                    <td class="py-4 px-4">
+                        <div class="flex flex-col gap-1">
+                            <span class="font-semibold text-on-surface flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[18px] text-primary">calendar_today</span>
+                                ${formattedDate}
+                            </span>
+                            <span class="text-xs text-on-surface-variant font-medium flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[18px] text-secondary">schedule</span>
+                                ${b.time}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4">
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-on-surface">${escapeHtml(b.name)}</span>
+                            <span class="text-xs text-on-surface-variant flex items-center gap-1.5 mt-0.5">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">phone</span>
+                                ${escapeHtml(b.phone)}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4 text-center font-bold text-on-surface">${b.guests}</td>
+                    <td class="py-4 px-4 text-center">
+                        <span class="inline-flex items-center gap-1 bg-tertiary-container/35 text-tertiary font-bold text-xs px-2.5 py-1 rounded-full border border-tertiary/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                            ${b.vegCount || 0} Veg
+                        </span>
+                    </td>
+                    <td class="py-4 px-4 text-center">
+                        <span class="inline-flex items-center gap-1 bg-primary-container/20 text-primary font-bold text-xs px-2.5 py-1 rounded-full border border-primary/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            ${b.nonvegCount || 0} Non-Veg
+                        </span>
+                    </td>
+                    <td class="py-4 px-4 text-center">
+                        <button onclick="handleDeleteBooking('${b.id}')" class="p-2 text-error hover:bg-error-container hover:text-on-error-container rounded-full transition-all" title="Clear Booking">
+                            <span class="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+    }
+
+    function handleDeleteBooking(id) {
+        if (!confirm("Are you sure you want to delete this reservation?")) return;
+        
+        let bookings = [];
+        try {
+            bookings = JSON.parse(localStorage.getItem('samjhones_bookings')) || [];
+        } catch (e) {
+            bookings = [];
+        }
+        
+        const index = bookings.findIndex(b => b.id === id);
+        if (index > -1) {
+            const customerName = bookings[index].name;
+            bookings.splice(index, 1);
+            localStorage.setItem('samjhones_bookings', JSON.stringify(bookings));
+            renderBookingsList();
+            showToast('"' + customerName + '" reservation cleared.', 'delete');
+        }
+    }
+
+    function clearAllBookings() {
+        if (!confirm("CRITICAL WARNING: This will permanently delete ALL active and historical reservation data. Are you absolutely sure you want to proceed?")) return;
+        
+        localStorage.setItem('samjhones_bookings', JSON.stringify([]));
+        renderBookingsList();
+        showToast('All reservation history cleared.', 'delete');
+    }
+
+    // Helper functions
+    function escapeHtml(str) {
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* Custom Styles for SAMJOHN'S Buffet Experience */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for category lists but keep scroll function */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom scrollbar for desktop browser */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f6f3f2;
+}
+::-webkit-scrollbar-thumb {
+    background: #b20112;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #d62828;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+    background: rgba(252, 249, 248, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(144, 111, 107, 0.15);
+}
+
+.dark .glass-panel {
+    background: rgba(49, 48, 48, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(229, 189, 185, 0.15);
+}
+
+/* Reservation Modal Styles */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(28, 27, 27, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-container {
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+}
+.modal-backdrop.show .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    z-index: 200;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.toast-container.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Masonry category animation helper */
+.masonry-item {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.masonry-item.hidden-item {
+    transform: scale(0.8);
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
